@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Gerenciar Testes - CELPIP Trainer{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="mb-4">Gerenciar Testes</h1>
+            
+            <div class="mb-4">
+                <a href="{{ url_for('admin.create_test') }}" class="btn btn-success">
+                    <i class="fas fa-plus"></i> Novo Teste
+                </a>
+                <a href="{{ url_for('admin.dashboard') }}" class="btn btn-secondary ml-2">
+                    <i class="fas fa-arrow-left"></i> Voltar ao Dashboard
+                </a>
+            </div>
+            
+            {% if tests %}
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Tipo</th>
+                            <th>Duração (min)</th>
+                            <th>Questões</th>
+                            <th>Criado em</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for test in tests %}
+                        <tr>
+                            <td>{{ test.id }}</td>
+                            <td>{{ test.name }}</td>
+                            <td>{{ test.test_type.name if test.test_type else 'N/A' }}</td>
+                            <td>{{ test.duration_minutes }}</td>
+                            <td>{{ test.questions|length }}</td>
+                            <td>{{ test.created_at.strftime('%d/%m/%Y') }}</td>
+                            <td>
+                                <a href="#" class="btn btn-sm btn-primary">
+                                    <i class="fas fa-edit"></i> Editar
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="alert alert-info">
+                Nenhum teste cadastrado ainda. Clique em "Novo Teste" para adicionar.
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %} 

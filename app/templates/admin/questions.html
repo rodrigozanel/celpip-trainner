@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Gerenciar Questões - CELPIP Trainer{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="mb-4">Gerenciar Questões</h1>
+            
+            <div class="mb-4">
+                <a href="{{ url_for('admin.create_question') }}" class="btn btn-success">
+                    <i class="fas fa-plus"></i> Nova Questão
+                </a>
+                <a href="{{ url_for('admin.dashboard') }}" class="btn btn-secondary ml-2">
+                    <i class="fas fa-arrow-left"></i> Voltar ao Dashboard
+                </a>
+            </div>
+            
+            {% if questions %}
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Tipo</th>
+                            <th>Texto</th>
+                            <th>Criado em</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for question in questions %}
+                        <tr>
+                            <td>{{ question.id }}</td>
+                            <td>{{ question.question_type }}</td>
+                            <td>{{ question.content[:50] }}{% if question.content|length > 50 %}...{% endif %}</td>
+                            <td>{{ question.created_at.strftime('%d/%m/%Y') if question.created_at else 'N/A' }}</td>
+                            <td>
+                                <a href="{{ url_for('admin.edit_question', id=question.id) }}" class="btn btn-sm btn-primary">
+                                    <i class="fas fa-edit"></i> Editar
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="alert alert-info">
+                Nenhuma questão cadastrada ainda. Clique em "Nova Questão" para adicionar.
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %} 

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Avaliador Dashboard - CELPIP Trainer{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="mb-4">Painel do Avaliador</h1>
+            <div class="alert alert-info">
+                Bem-vindo ao painel de avaliação do CELPIP Trainer. Aqui você pode revisar e avaliar as respostas dos candidatos.
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Avaliar Respostas</h5>
+                            <p class="card-text">Avaliar respostas pendentes de candidatos.</p>
+                            <a href="#" class="btn btn-primary">Acessar</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Histórico de Avaliações</h5>
+                            <p class="card-text">Visualizar avaliações realizadas anteriormente.</p>
+                            <a href="#" class="btn btn-primary">Acessar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mt-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Respostas Pendentes</h5>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-warning">
+                        Não há respostas pendentes para avaliação no momento.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

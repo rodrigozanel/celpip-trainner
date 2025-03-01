@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard - CELPIP Trainer{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="mb-4">Painel do Administrador</h1>
+            <div class="alert alert-info">
+                Bem-vindo ao painel administrativo do CELPIP Trainer.
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Gerenciar Questões</h5>
+                            <p class="card-text">Adicionar, editar e excluir questões do banco de dados.</p>
+                            <a href="{{ url_for('admin.list_questions') }}" class="btn btn-primary">Acessar</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Gerenciar Testes</h5>
+                            <p class="card-text">Criar e gerenciar testes completos.</p>
+                            <a href="{{ url_for('admin.list_tests') }}" class="btn btn-primary">Acessar</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Estatísticas</h5>
+                            <p class="card-text">Visualizar estatísticas de uso e desempenho.</p>
+                            <a href="#" class="btn btn-primary">Acessar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

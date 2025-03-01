@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }} - CELPIP Trainer{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="mb-4">{{ title }}</h1>
+            
+            <div class="mb-4">
+                <a href="{{ url_for('admin.list_tests') }}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Voltar à Lista de Testes
+                </a>
+            </div>
+            
+            <div class="card">
+                <div class="card-body">
+                    <form method="POST" action="">
+                        {{ form.hidden_tag() }}
+                        
+                        <div class="form-group mb-3">
+                            {{ form.title.label(class="form-label") }}
+                            {{ form.title(class="form-control" + (" is-invalid" if form.title.errors else "")) }}
+                            {% if form.title.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in form.title.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="form-group mb-3">
+                            {{ form.description.label(class="form-label") }}
+                            {{ form.description(class="form-control" + (" is-invalid" if form.description.errors else ""), rows=3) }}
+                            {% if form.description.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in form.description.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="form-group mb-3">
+                            {{ form.test_type_id.label(class="form-label") }}
+                            {{ form.test_type_id(class="form-select" + (" is-invalid" if form.test_type_id.errors else "")) }}
+                            {% if form.test_type_id.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in form.test_type_id.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="form-group mb-3">
+                            {{ form.questions.label(class="form-label") }}
+                            <div class="alert alert-info">
+                                Selecione as questões que deseja incluir neste teste.
+                                Mantenha pressionada a tecla Ctrl (ou Command no Mac) para selecionar múltiplas questões.
+                            </div>
+                            {{ form.questions(class="form-select" + (" is-invalid" if form.questions.errors else ""), size=10, multiple=True) }}
+                            {% if form.questions.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in form.questions.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="form-group mt-4">
+                            {{ form.submit(class="btn btn-primary") }}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Script para atualizar a lista de questões quando o tipo de teste mudar
+    document.addEventListener('DOMContentLoaded', function() {
+        const testTypeSelect = document.getElementById('test_type_id');
+        const questionsSelect = document.getElementById('questions');
+        
+        // Armazenar as opções originais para uso posterior
+        let originalOptions = [];
+        for (let i = 0; i < questionsSelect.options.length; i++) {
+            originalOptions.push({
+                value: questionsSelect.options[i].value,
+                text: questionsSelect.options[i].text
+            });
+        }
+        
+        // Função para atualizar questões quando o tipo mudar
+        testTypeSelect.addEventListener('change', function() {
+            const testTypeId = this.value;
+            if (!testTypeId) {
+                // Se nenhum tipo for selecionado, restaurar todas as opções originais
+                questionsSelect.innerHTML = '';
+                originalOptions.forEach(option => {
+                    const optElement = document.createElement('option');
+                    optElement.value = option.value;
+                    optElement.textContent = option.text;
+                    questionsSelect.appendChild(optElement);
+                });
+                return;
+            }
+            
+            // Buscar questões para o tipo de teste selecionado via AJAX
+            fetch(`/admin/api/questions-by-type/${testTypeId}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Limpar opções atuais
+                    questionsSelect.innerHTML = '';
+                    
+                    if (data.questions && data.questions.length > 0) {
+                        data.questions.forEach(question => {
+                            const option = document.createElement('option');
+                            option.value = question.id;
+                            option.textContent = question.content.substring(0, 50) + '...';
+                            questionsSelect.appendChild(option);
+                        });
+                    } else {
+                        const option = document.createElement('option');
+                        option.textContent = 'Nenhuma questão disponível para este tipo de teste';
+                        option.disabled = true;
+                        questionsSelect.appendChild(option);
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro ao buscar questões:', error);
+                    // Em caso de erro, restaurar as opções originais
+                    questionsSelect.innerHTML = '';
+                    originalOptions.forEach(option => {
+                        const optElement = document.createElement('option');
+                        optElement.value = option.value;
+                        optElement.textContent = option.text;
+                        questionsSelect.appendChild(optElement);
+                    });
+                });
+        });
+    });
+</script>
+{% endblock %} 

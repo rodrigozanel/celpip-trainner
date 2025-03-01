@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block title %}CELPIP Trainer - Simulador de Provas de Inglês{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8 mx-auto text-center">
+        <h1 class="display-4 mb-4">Bem-vindo ao CELPIP Trainer</h1>
+        <p class="lead mb-5">
+            Um simulador de provas para testes de inglês como IELTS e CELPIP, focado em ajudar você a praticar e melhorar suas habilidades.
+        </p>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-lg-10 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="h5 mb-0">Selecione o tipo de usuário</h2>
+            </div>
+            <div class="card-body">
+                <div class="row text-center">
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body d-flex flex-column">
+                                <h3 class="h5 mb-3">Administrador</h3>
+                                <p class="text-muted mb-4">Crie e gerencie questões e testes para os aplicantes.</p>
+                                <a href="{{ url_for('main.select_role', user_type='admin') }}" class="btn btn-primary mt-auto">Entrar como Administrador</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body d-flex flex-column">
+                                <h3 class="h5 mb-3">Avaliador</h3>
+                                <p class="text-muted mb-4">Avalie as respostas dos aplicantes e forneça feedback.</p>
+                                <a href="{{ url_for('main.select_role', user_type='evaluator') }}" class="btn btn-primary mt-auto">Entrar como Avaliador</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body d-flex flex-column">
+                                <h3 class="h5 mb-3">Aplicante</h3>
+                                <p class="text-muted mb-4">Faça testes de inglês e receba feedback para melhorar suas habilidades.</p>
+                                <a href="{{ url_for('main.select_role', user_type='applicant') }}" class="btn btn-primary mt-auto">Entrar como Aplicante</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-lg-10 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="h5 mb-0">Tipos de Testes Disponíveis</h2>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h3 class="h5 mb-3">Writing</h3>
+                                <p>Pratique suas habilidades de escrita em inglês com testes similares ao CELPIP e IELTS. Receba feedback detalhado sobre sua escrita.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h3 class="h5 mb-3">Speaking</h3>
+                                <p>Pratique suas habilidades de fala em inglês com testes de áudio. Grave suas respostas e receba avaliações detalhadas.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-6 mb-3">
+                        <div class="card h-100 bg-light">
+                            <div class="card-body">
+                                <h3 class="h5 mb-3">Reading (Em breve)</h3>
+                                <p>Testes de leitura e compreensão de textos em inglês estarão disponíveis em breve.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="card h-100 bg-light">
+                            <div class="card-body">
+                                <h3 class="h5 mb-3">Listening (Em breve)</h3>
+                                <p>Testes de compreensão auditiva em inglês estarão disponíveis em breve.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

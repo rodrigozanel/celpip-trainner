@@ -1,0 +1,89 @@
+/* Estilos gerais */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* Estilos para o cabeçalho */
+.navbar-brand {
+    font-weight: bold;
+}
+
+/* Estilos para os cards */
+.card {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: none;
+    margin-bottom: 20px;
+}
+
+.card-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #eee;
+}
+
+/* Estilos para formulários */
+.form-control:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Estilos para botões */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0069d9;
+    border-color: #0062cc;
+}
+
+/* Estilos para o rodapé */
+footer {
+    border-top: 1px solid #eee;
+}
+
+/* Estilos para as páginas de teste */
+.question-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.question-instructions {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-left: 4px solid #007bff;
+    margin-bottom: 20px;
+}
+
+/* Estilos para respostas */
+.answer-content {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.answer-feedback {
+    background-color: #e9f7ef;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+/* Estilos para pontuações */
+.score-badge {
+    font-size: 1.2rem;
+    padding: 5px 10px;
+    border-radius: 50px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+} 

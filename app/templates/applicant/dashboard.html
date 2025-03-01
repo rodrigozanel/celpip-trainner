@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Candidato Dashboard - CELPIP Trainer{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="mb-4">Painel do Candidato</h1>
+            <div class="alert alert-info">
+                Bem-vindo ao CELPIP Trainer. Aqui você pode praticar e se preparar para o exame CELPIP.
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Testes Disponíveis</h5>
+                            <p class="card-text">Visualizar e iniciar testes disponíveis.</p>
+                            <a href="#" class="btn btn-primary">Acessar</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Meu Progresso</h5>
+                            <p class="card-text">Acompanhar seu progresso e resultados.</p>
+                            <a href="#" class="btn btn-primary">Acessar</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Recursos</h5>
+                            <p class="card-text">Materiais de estudo e dicas úteis.</p>
+                            <a href="#" class="btn btn-primary">Acessar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mt-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Atividades Recentes</h5>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-secondary">
+                        Você ainda não realizou nenhuma atividade. Comece agora mesmo!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
